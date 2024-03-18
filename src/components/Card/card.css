@@ -1,0 +1,19 @@
+.card {
+  height: 250px;
+  width: 375px;
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: white;
+  transform: translateY(-80px);
+  opacity: 0;
+  animation: fade-in 2s linear 2.3s 1 normal forwards;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

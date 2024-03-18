@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+Task
+Build an idea board that allows a user to create new ideas, edit existing ideas or delete them. Each idea should be represented as a tile on the board that displays a title, description and created/updated time. The title and description should be editable inline. The description text should have a max length of 140 characters. There should also be a button on the tile that allows for it to be deleted.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+When working through the task you should treat it as if you're writing real world production code. We're looking to see a test suite, comments where required and an attention to detail. In addition to this you may use whatever libraries or packages you wish. This should take you around two or three hours to complete fully but feel free to spend as much or as little time on the exercise as you like. Detail anything you didn't get around to completing in the COMMENTS.md file along with any other additonal information we should be aware of when reviewing the code.
 
-Currently, two official plugins are available:
+Required
+Page should be fully responsive.
+Each idea tile should contain a title and description, which is editable, as well as created/updated time.
+New ideas should have the title field focused to prompt user to begin typing.
+Add the ability to sort ideas by creation date or alphabetically.
+Stretch
+Utilise the localStorage API to persist current state when the page is refreshed.
+Add a character countdown as the user is approaching the limit of their description text.
+Add an unobtrusive notification when an update is made to a tile.
+Getting started
+yarn start will run a development server on http://localhost:3000.
+yarn test will run the suite of tests created.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Don't forget
+what we're looking for
