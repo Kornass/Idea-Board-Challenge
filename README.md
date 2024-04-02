@@ -7,5 +7,6 @@ Welcome to the Personal Ideas Manager project! This web application provides you
 To begin managing your personal ideas, follow these steps:
 
 1.  Clone or download the project repository to your local machine.
-2.  Open the project directory and launch the application by running the `npm start` command in a root folder - it'll start development server on http://localhost:3000/
-3.  Explore the intuitive interface to create, update, and delete your own personal ideas effortlessly.
+2.  Open the project directory and install all dependencies by running `npm i` command
+3.  Launch the application by running the `npm start` command in a root folder - it'll start development server on http://localhost:3000/
+4.  Explore the intuitive interface to create, update, and delete your own personal ideas effortlessly.
