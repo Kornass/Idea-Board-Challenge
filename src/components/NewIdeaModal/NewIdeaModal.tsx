@@ -9,19 +9,19 @@ function NewIdeaModal() {
   const { modalOpen, addIdea, isEdit, ideas, onModalClose } =
     useContext(DataContext);
 
+  // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
+  const beingEdited = isEdit && ideas.find((idea) => idea.id === isEdit);
+
   const [newIdea, setNewIdea] = useState({
     title: "",
     description: "",
   });
 
-  // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
-  const beingEdited = isEdit && ideas.find((idea) => idea.id === isEdit);
-
   const handleChange = (e) => {
     setNewIdea((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // As newIdea state is initialized on first render. Modal is rendering initially with new idea without data and beingedited being empty ass well. That's why i decided to watch beingEdited changes and update the idea state value once we pick idea to edit
+  // Update the state of newIdea (that controlls inputs) to the data of element that is being edited. Why this approach? It's because modal is getting initially rendered in App.tsx on initial app render. When opened it presents data of this initial render. So whenever for editing is picked I update the state to include certain idea data to fill up controlled by this state inputs and perform editing.
   useEffect(() => {
     if (beingEdited) {
       setNewIdea({

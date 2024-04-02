@@ -8,7 +8,6 @@ import { useContext } from "react";
 
 function Cards() {
   const { ideas, activeSorting } = useContext(DataContext);
-  console.log(ideas);
 
   return (
     <section className="card-wrapper">
