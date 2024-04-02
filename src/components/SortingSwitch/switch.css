@@ -1,0 +1,12 @@
+.switch {
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.switch span {
+  margin: 0rem 1rem;
+  color: white;
+  font-family: inherit;
+}

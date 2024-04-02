@@ -1,0 +1,124 @@
+.myModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.75);
+  overflow: auto;
+  border-radius: 10px;
+  outline: none;
+  width: 70%;
+  position: relative;
+}
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+.modal {
+  padding: 0.5rem;
+  font-family: inherit;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.field {
+  position: relative;
+}
+.count {
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.5rem;
+  color: gray;
+  font-size: 0.8rem;
+}
+label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: black;
+  margin: 0.5rem auto;
+  font-weight: bold;
+}
+input,
+textarea {
+  padding: 0.5rem;
+  width: 100%;
+  font-family: inherit;
+  font-weight: 600;
+}
+input {
+  padding-right: 3rem;
+}
+.modal button[type="submit"],
+.delete-button {
+  width: 30%;
+  padding: 0.3rem 0.6rem;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: rgba(111, 230, 131, 0.8);
+  border: 0.5px solid gray;
+  font-weight: bold;
+  color: rgba(44, 88, 51, 1);
+  transition: 1s;
+}
+.modal button[type="submit"]:hover {
+  cursor: pointer;
+  background-color: rgba(44, 88, 51, 1);
+  color: white;
+}
+.modal button[disabled] {
+  background-color: gray;
+  color: black;
+}
+.close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  background-color: inherit;
+}
+.close {
+  cursor: pointer;
+}
+p {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+.del {
+  align-items: center;
+}
+.delete-button {
+  background-color: rgb(251, 167, 167);
+  font-weight: bold;
+  color: rgb(147, 3, 3);
+  margin-bottom: 0;
+}
+.delete-button:hover {
+  background-color: rgb(147, 3, 3);
+  color: white;
+  cursor: pointer;
+}

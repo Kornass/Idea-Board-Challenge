@@ -1,0 +1,27 @@
+// Dummy data to test layout - to import in Cards.tsx
+[
+  {
+    "id": "9a4c45f6e803a217",
+    "title": "Sample Title 1 but longer a little to start a new line",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "isEdit": true,
+    "createdAt": "Fri Mar 22 2024 00:00:00 GMT+0100",
+    "updatedAt": ""
+  },
+  {
+    "id": "7b3e6f9d245a0c1b",
+    "title": "Sample Title 2",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "isEdit": false,
+    "createdAt": "Sun Mar 24 2024 00:00:00 GMT+0100 ",
+    "updatedAt": ""
+  },
+  {
+    "id": "5d2a1b8c3f4e6a9d",
+    "title": "Sample Title 3",
+    "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "isEdit": true,
+    "createdAt": "Fri Mar 22 2024 15:00:00 GMT+0100",
+    "updatedAt": "Sat Mar 23 2024 00:00:00 GMT+0100 "
+  }
+]
