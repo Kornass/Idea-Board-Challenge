@@ -14,7 +14,6 @@ export const DataProvider = ({ children }) => {
   const [activeSorting, setActiveSorting] = useState("Date");
   // State for deleting modal
   const [deleting, setDeleting] = useState(null);
-  console.log(ideas);
 
   const updateIdea = (updated, oldVersion) => {
     updated = { ...oldVersion, ...updated, updatedAt: new Date() };
@@ -25,8 +24,8 @@ export const DataProvider = ({ children }) => {
       });
     });
     setIsEdit(null);
-    toast.success("Idea updated successfully!");
     setModalOpen(false);
+    toast.success("Idea updated successfully!");
   };
 
   const addIdea = (newIdea) => {
@@ -36,9 +35,9 @@ export const DataProvider = ({ children }) => {
       updatedAt: "",
       id: uuidv4(),
     };
-    toast.success("Idea added successfully!");
     setIdeas((prevState) => [...prevState, newIdea]);
     setModalOpen(false);
+    toast.success("Idea added successfully!");
   };
 
   const deleteIdea = (id) => {
@@ -63,8 +62,6 @@ export const DataProvider = ({ children }) => {
         updatedAt: new Date(idea.updatedAt),
       }));
       setIdeas(formatted);
-    } else {
-      setIdeas([]);
     }
   }, []);
 
