@@ -6,7 +6,7 @@ import "./modal.css";
 Modal.setAppElement("#root");
 
 function NewIdeaModal() {
-  const { modalOpen, addIdea, isEdit, ideas, onModalClose } =
+  const { modalOpen, addIdea, isEdit, ideas, onModalClose, updateIdea } =
     useContext(DataContext);
 
   // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
@@ -49,7 +49,11 @@ function NewIdeaModal() {
     <Modal
       isOpen={modalOpen}
       onRequestClose={() => {
-        onModalClose(setNewIdea);
+        setNewIdea({
+          title: "",
+          description: "",
+        });
+        onModalClose();
       }}
       contentLabel="New idea"
       overlayClassName="myoverlay"
@@ -60,7 +64,11 @@ function NewIdeaModal() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            addIdea(newIdea, beingEdited, setNewIdea);
+            setNewIdea({
+              title: "",
+              description: "",
+            });
+            beingEdited ? updateIdea(newIdea, beingEdited) : addIdea(newIdea);
           }}
         >
           <div className="field">

@@ -16,54 +16,39 @@ export const DataProvider = ({ children }) => {
   const [deleting, setDeleting] = useState(null);
   console.log(ideas);
 
-  const addIdea = (newIdea, beingEdited, setNewIdea) => {
-    // Variable to store new version of ideas
-    let newIdeas;
-    if (beingEdited) {
-      // Updating existing one
-      newIdea = { ...beingEdited, ...newIdea, updatedAt: new Date() };
-      newIdeas = [...ideas];
-      const idx = newIdeas.findIndex((idea) => idea.id === isEdit);
-      newIdeas[idx] = newIdea;
-      setIsEdit(null);
-      toast.success("Idea updated successfully!");
-    } else {
-      // reassigning newIdea to add all required fields
-      newIdea = {
-        ...newIdea,
-        createdAt: new Date(),
-        updatedAt: "",
-        id: uuidv4(),
-      };
-      newIdeas = [...ideas, newIdea];
-      toast.success("Idea added successfully!");
-    }
-    setIdeas(newIdeas);
-    localStorage.setItem("ideas", JSON.stringify(newIdeas));
-    setModalOpen(false);
-    // resetting new Idea to keep the structure
-    setNewIdea({
-      title: "",
-      description: "",
+  const updateIdea = (updated, oldVersion) => {
+    updated = { ...oldVersion, ...updated, updatedAt: new Date() };
+    setIdeas((prevState) => {
+      return prevState.map((idea) => {
+        if (idea.id === isEdit) return updated;
+        return idea;
+      });
     });
+    setIsEdit(null);
+    toast.success("Idea updated successfully!");
+    setModalOpen(false);
+  };
+
+  const addIdea = (newIdea) => {
+    newIdea = {
+      ...newIdea,
+      createdAt: new Date(),
+      updatedAt: "",
+      id: uuidv4(),
+    };
+    toast.success("Idea added successfully!");
+    setIdeas((prevState) => [...prevState, newIdea]);
+    setModalOpen(false);
   };
 
   const deleteIdea = (id) => {
-    const idx = ideas.findIndex((idea) => idea.id === id);
-    const temp = [...ideas];
-    temp.splice(idx, 1);
-    setIdeas(temp);
-    localStorage.setItem("ideas", JSON.stringify(temp));
+    setIdeas((prevState) => prevState.filter((idea) => idea.id !== id));
     setDeleting(null);
     toast.info("Idea deleted successfully!");
   };
 
-  const onModalClose = (setLocalState) => {
+  const onModalClose = () => {
     setIsEdit(null);
-    setLocalState({
-      title: "",
-      description: "",
-    });
     setModalOpen((prev) => !prev);
   };
 
@@ -83,6 +68,12 @@ export const DataProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (ideas.length) {
+      localStorage.setItem("ideas", JSON.stringify(ideas));
+    }
+  }, [ideas]);
+
   // useEffect(() => {
   //   console.log(ideas);
   // }, [ideas]);
@@ -93,6 +84,7 @@ export const DataProvider = ({ children }) => {
         modalOpen,
         setModalOpen,
         addIdea,
+        updateIdea,
         ideas,
         deleteIdea,
         isEdit,
