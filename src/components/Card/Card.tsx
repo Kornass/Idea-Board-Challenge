@@ -8,7 +8,7 @@ function Card({ idea }) {
 
   // Formatting date to render
   const date = obtainLatest(idea).toString().slice(4, 15);
-
+  // const date = "Date";
   return (
     <div
       className="card"

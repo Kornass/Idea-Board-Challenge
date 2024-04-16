@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,17 +9,14 @@ export const DataProvider = ({ children }) => {
   // This state will hold id of idea that is being edited
   const [isEdit, setIsEdit] = useState(null);
   // Grab ideas from the localstorage at state initialization
-  const [ideas, setIdeas] = useState(
-    JSON.parse(localStorage.getItem("ideas")) || []
-  );
-
+  const [ideas, setIdeas] = useState([]);
   // Sorting method indicator stated
   const [activeSorting, setActiveSorting] = useState("Date");
   // State for deleting modal
   const [deleting, setDeleting] = useState(null);
+  console.log(ideas);
 
-  const addIdea = (e, newIdea, beingEdited, setNewIdea) => {
-    e.preventDefault();
+  const addIdea = (newIdea, beingEdited, setNewIdea) => {
     // Variable to store new version of ideas
     let newIdeas;
     if (beingEdited) {
@@ -69,6 +66,26 @@ export const DataProvider = ({ children }) => {
     });
     setModalOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    // As I store data in localstorage in JSON (which is not supporting Date type), dates are coming in string format when data got retrieved from localstorage.
+    if (localStorage.getItem("ideas")) {
+      // Every time you reach for ideas to localstorage, change their dates to date type
+      const ideasFromStorage = JSON.parse(localStorage.getItem("ideas"));
+      const formatted = ideasFromStorage.map((idea) => ({
+        ...idea,
+        createdAt: new Date(idea.createdAt),
+        updatedAt: new Date(idea.updatedAt),
+      }));
+      setIdeas(formatted);
+    } else {
+      setIdeas([]);
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(ideas);
+  // }, [ideas]);
 
   return (
     <DataContext.Provider

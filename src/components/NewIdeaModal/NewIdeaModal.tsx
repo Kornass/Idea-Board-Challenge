@@ -57,7 +57,12 @@ function NewIdeaModal() {
     >
       <div className="modal">
         {/* This function adds and updates idea depending on if element is being edited */}
-        <form onSubmit={(e) => addIdea(e, newIdea, beingEdited, setNewIdea)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addIdea(newIdea, beingEdited, setNewIdea);
+          }}
+        >
           <div className="field">
             <label>Title:</label>
             <input
