@@ -1,23 +1,29 @@
+import React from "react";
 import Modal from "react-modal";
 import { DataContext } from "../../context/DataContext";
 import { useContext, useState, useEffect } from "react";
 import "./modal.css";
+import { Idea } from "../../types";
+import { ContextType } from "../../types.ts";
+import { NewIdeaState } from "../../types";
 
 Modal.setAppElement("#root");
 
 function NewIdeaModal() {
   const { modalOpen, addIdea, isEdit, ideas, onModalClose, updateIdea } =
-    useContext(DataContext);
+    useContext(DataContext) as ContextType;
 
   // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
-  const beingEdited = isEdit && ideas.find((idea) => idea.id === isEdit);
+  const beingEdited = isEdit && ideas.find((idea: Idea) => idea.id === isEdit);
 
-  const [newIdea, setNewIdea] = useState({
+  const [newIdea, setNewIdea] = useState<NewIdeaState>({
     title: "",
     description: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setNewIdea((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -104,7 +110,7 @@ function NewIdeaModal() {
             {isEdit ? "Update idea" : "Add idea"}
           </button>
         </form>
-        <button className="close" onClick={() => onModalClose(setNewIdea)}>
+        <button className="close" onClick={() => onModalClose()}>
           X
         </button>
       </div>

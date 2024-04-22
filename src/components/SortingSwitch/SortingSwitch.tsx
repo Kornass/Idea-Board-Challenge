@@ -2,9 +2,12 @@ import Switch from "react-switch";
 import "./switch.css";
 import { DataContext } from "../../context/DataContext";
 import { useContext } from "react";
+import { ContextType } from "../../types.ts";
 
 function SortingSwitch() {
-  const { activeSorting, setActiveSorting, ideas } = useContext(DataContext);
+  const { activeSorting, setActiveSorting, ideas } = useContext(
+    DataContext
+  ) as ContextType;
 
   return (
     <div className="switch">
@@ -12,7 +15,7 @@ function SortingSwitch() {
       <Switch
         checked={activeSorting === "Alphabetically"}
         onChange={() =>
-          setActiveSorting((prev) =>
+          setActiveSorting((prev: string) =>
             prev === "Alphabetically" ? "Date" : "Alphabetically"
           )
         }

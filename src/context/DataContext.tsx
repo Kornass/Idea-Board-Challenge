@@ -1,21 +1,28 @@
+// Native imports
+import * as React from "react";
 import { createContext, useState, useEffect } from "react";
+// Packages
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+// Types
+import { Idea } from "../types";
+import { ContextType } from "../types";
+export const DataContext = createContext<ContextType | null>(null);
 
-export const DataContext = createContext();
-
-export const DataProvider = ({ children }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   // This state will hold id of idea that is being edited
-  const [isEdit, setIsEdit] = useState(null);
+  const [isEdit, setIsEdit] = useState<string | null>(null);
   // Grab ideas from the localstorage at state initialization
-  const [ideas, setIdeas] = useState([]);
+  const [ideas, setIdeas] = useState<Idea[]>([]);
   // Sorting method indicator stated
-  const [activeSorting, setActiveSorting] = useState("Date");
+  const [activeSorting, setActiveSorting] = useState<string>("Date");
   // State for deleting modal
-  const [deleting, setDeleting] = useState(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
-  const updateIdea = (updated, oldVersion) => {
+  const updateIdea = (updated: Idea, oldVersion: Idea) => {
     updated = { ...oldVersion, ...updated, updatedAt: new Date() };
     setIdeas((prevState) => {
       return prevState.map((idea) => {
@@ -28,7 +35,7 @@ export const DataProvider = ({ children }) => {
     toast.success("Idea updated successfully!");
   };
 
-  const addIdea = (newIdea) => {
+  const addIdea = (newIdea: Idea) => {
     newIdea = {
       ...newIdea,
       createdAt: new Date(),
@@ -40,8 +47,8 @@ export const DataProvider = ({ children }) => {
     toast.success("Idea added successfully!");
   };
 
-  const deleteIdea = (id) => {
-    setIdeas((prevState) => prevState.filter((idea) => idea.id !== id));
+  const deleteIdea = (id: string) => {
+    setIdeas((prevState) => prevState.filter((idea: Idea) => idea.id !== id));
     setDeleting(null);
     toast.info("Idea deleted successfully!");
   };
@@ -55,8 +62,10 @@ export const DataProvider = ({ children }) => {
     // As I store data in localstorage in JSON (which is not supporting Date type), dates are coming in string format when data got retrieved from localstorage.
     if (localStorage.getItem("ideas")) {
       // Every time you reach for ideas to localstorage, change their dates to date type
-      const ideasFromStorage = JSON.parse(localStorage.getItem("ideas"));
-      const formatted = ideasFromStorage.map((idea) => ({
+      const ideasFromStorage: Idea[] = JSON.parse(
+        localStorage.getItem("ideas") as string
+      );
+      const formatted = ideasFromStorage.map((idea: Idea) => ({
         ...idea,
         createdAt: new Date(idea.createdAt),
         updatedAt: new Date(idea.updatedAt),

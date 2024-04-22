@@ -1,13 +1,23 @@
+import React from "react";
 import "./card.css";
 import { obtainLatest } from "../../utils/utils.js";
 import { DataContext } from "../../context/DataContext";
 import { useContext } from "react";
+import { Idea } from "../../types.ts";
+import { ContextType } from "../../types.ts";
 
-function Card({ idea }) {
-  const { setDeleting, setIsEdit, setModalOpen } = useContext(DataContext);
+type Props = {
+  idea: Idea;
+  idx: number;
+};
+
+const Card: React.FC<Props> = ({ idea }) => {
+  const { setDeleting, setIsEdit, setModalOpen } = useContext(
+    DataContext
+  ) as ContextType;
 
   // Formatting date to render
-  const date = obtainLatest(idea).toString().slice(4, 15);
+  const date: string = obtainLatest(idea).toString().slice(4, 15);
   // const date = "Date";
   return (
     <div
@@ -33,6 +43,6 @@ function Card({ idea }) {
       <span className="date">{date}</span>
     </div>
   );
-}
+};
 
 export default Card;

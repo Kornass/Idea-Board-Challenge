@@ -4,16 +4,18 @@ import "./cards.css";
 import { obtainLatest } from "../../utils/utils.js";
 import { DataContext } from "../../context/DataContext";
 import { useContext } from "react";
+import { Idea } from "../../types.ts";
+import { ContextType } from "../../types.ts";
 
 function Cards() {
-  const { ideas, activeSorting } = useContext(DataContext);
+  const { ideas, activeSorting } = useContext(DataContext) as ContextType;
 
-  const sortIdeas = (ideas) => {
+  const sortIdeas = (ideas: Idea[]) => {
     if (activeSorting === "Date") {
       return ideas.toSorted((a, b) => {
-        const latestA = obtainLatest(a);
-        const latestB = obtainLatest(b);
-        return latestB - latestA;
+        const latestA: Date = obtainLatest(a);
+        const latestB: Date = obtainLatest(b);
+        return latestB.getTime() - latestA.getTime();
       });
     } else {
       return ideas.toSorted((a, b) => {
