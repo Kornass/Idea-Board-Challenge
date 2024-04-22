@@ -9,7 +9,6 @@ export type NewIdeaState = {
   title: string;
   description: string;
 };
-
 export type ContextType = {
   // states
   ideas: Idea[];
@@ -22,8 +21,8 @@ export type ContextType = {
   deleting: string | null;
   setDeleting: React.Dispatch<React.SetStateAction<string | null>>;
   // functions
-  addIdea: (newIdea: Idea) => void;
-  updateIdea: (updated: Idea, oldVersion: Idea) => void;
+  addIdea: (newIdea: NewIdeaState) => void;
+  updateIdea: (updated: Idea | NewIdeaState, oldVersion: Idea) => void;
   deleteIdea: (id: string) => void;
   onModalClose: () => void;
 };

@@ -20,18 +20,10 @@ I'm aware of the lack of use of typescript and testing in my solution. I'm curio
 
 - Deployment
 - List criteria that you've met
-- Improve comments - what were your challenges not steps
-- Not focus so much on design - focus on frontend functionalities
-- What's the minimum we need right now ?
-- obtainLatest function redundant - nice with typescript
-- getting from local storage in useEffect to limit renders on any state change
-- have e.preventDefault() closer to the form
-- addIdea function refactor in smaller funcs - as clear as possible
-- find instead of findIndex
-- set local storage in use Effect
-- reducer in a situation when having a lot of setStates
-- Keep things as close as they are
-- toSorted is not modfying and original aray
-- move sorting function to keep the render clean
-- pull things our of react is useful for testing
-- cards have nothing to do with sorting
+- obtainLatest function redundant - would be nice to fix with typescript
+- getting from local storage in useEffect instead on state initialization
+- move e.preventDefault() closer to the form
+- refactor addIdea function into smaller, more clear funcs
+- Keep things as close as they are declared
+- sort --> toSorted
+- move sorting function from render

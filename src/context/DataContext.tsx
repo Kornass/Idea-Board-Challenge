@@ -5,8 +5,9 @@ import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 // Types
-import { Idea } from "../types";
+import { Idea, NewIdeaState } from "../types";
 import { ContextType } from "../types";
+
 export const DataContext = createContext<ContextType | null>(null);
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -22,7 +23,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   // State for deleting modal
   const [deleting, setDeleting] = useState<string | null>(null);
 
-  const updateIdea = (updated: Idea, oldVersion: Idea) => {
+  const updateIdea = (updated: Idea | NewIdeaState, oldVersion: Idea) => {
     updated = { ...oldVersion, ...updated, updatedAt: new Date() };
     setIdeas((prevState) => {
       return prevState.map((idea) => {
@@ -35,14 +36,16 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     toast.success("Idea updated successfully!");
   };
 
-  const addIdea = (newIdea: Idea) => {
-    newIdea = {
-      ...newIdea,
-      createdAt: new Date(),
-      updatedAt: "",
-      id: uuidv4(),
-    };
-    setIdeas((prevState) => [...prevState, newIdea]);
+  const addIdea = (newIdea: NewIdeaState) => {
+    setIdeas((prevState) => [
+      ...prevState,
+      {
+        ...newIdea,
+        createdAt: new Date(),
+        updatedAt: "",
+        id: uuidv4(),
+      },
+    ]);
     setModalOpen(false);
     toast.success("Idea added successfully!");
   };
