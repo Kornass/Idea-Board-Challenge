@@ -19,7 +19,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   // Grab ideas from the localstorage at state initialization
   const [ideas, setIdeas] = useState<Idea[]>([]);
   // Sorting method indicator stated
-  const [activeSorting, setActiveSorting] = useState<string>("Date");
+  const [activeSorting, setActiveSorting] = useState<"Alphabetically" | "Date">(
+    "Date"
+  );
   // State for deleting modal
   const [deleting, setDeleting] = useState<string | null>(null);
 

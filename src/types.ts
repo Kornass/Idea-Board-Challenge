@@ -16,8 +16,10 @@ export type ContextType = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isEdit: string | null;
   setIsEdit: React.Dispatch<React.SetStateAction<string | null>>;
-  activeSorting: string;
-  setActiveSorting: React.Dispatch<React.SetStateAction<string>>;
+  activeSorting: "Alphabetically" | "Date";
+  setActiveSorting: React.Dispatch<
+    React.SetStateAction<"Alphabetically" | "Date">
+  >;
   deleting: string | null;
   setDeleting: React.Dispatch<React.SetStateAction<string | null>>;
   // functions
