@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { DataContext } from "../../context/DataContext";
+import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import "../NewIdeaModal/modal.css";
 import { Idea } from "../../types";
@@ -9,7 +9,7 @@ Modal.setAppElement("#root");
 
 function DeleteModal() {
   const { deleting, setDeleting, deleteIdea, ideas } = useContext(
-    DataContext
+    IdeasContext
   ) as ContextType;
 
   const toDelete = ideas.find((idea: Idea) => idea.id === deleting);

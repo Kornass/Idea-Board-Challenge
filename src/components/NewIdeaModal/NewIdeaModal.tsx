@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import { DataContext } from "../../context/DataContext";
+import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext, useState, useEffect } from "react";
 import "./modal.css";
 import { Idea } from "../../types";
@@ -10,7 +10,7 @@ Modal.setAppElement("#root");
 
 function NewIdeaModal() {
   const { modalOpen, addIdea, isEdit, ideas, onModalClose, updateIdea } =
-    useContext(DataContext) as ContextType;
+    useContext(IdeasContext) as ContextType;
 
   // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
   const beingEdited = isEdit && ideas.find((idea: Idea) => idea.id === isEdit);

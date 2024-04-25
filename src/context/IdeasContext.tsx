@@ -8,9 +8,9 @@ import { v4 as uuidv4 } from "uuid";
 import { Idea, NewIdeaState } from "../types";
 import { ContextType } from "../types";
 
-export const DataContext = createContext<ContextType | null>(null);
+export const IdeasContext = createContext<ContextType | null>(null);
 
-export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
+export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -90,7 +90,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   // }, [ideas]);
 
   return (
-    <DataContext.Provider
+    <IdeasContext.Provider
       value={{
         modalOpen,
         setModalOpen,
@@ -108,6 +108,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
       }}
     >
       {children}
-    </DataContext.Provider>
+    </IdeasContext.Provider>
   );
 };

@@ -1,12 +1,12 @@
 import Switch from "react-switch";
 import "./switch.css";
-import { DataContext } from "../../context/DataContext";
+import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import { ContextType } from "../../types.ts";
 
 function SortingSwitch() {
   const { activeSorting, setActiveSorting, ideas } = useContext(
-    DataContext
+    IdeasContext
   ) as ContextType;
 
   return (

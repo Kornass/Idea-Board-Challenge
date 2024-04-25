@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 import { obtainLatest } from "../../utils/utils.js";
-import { DataContext } from "../../context/DataContext";
+import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import { Idea } from "../../types.ts";
 import { ContextType } from "../../types.ts";
@@ -13,7 +13,7 @@ type Props = {
 
 const Card: React.FC<Props> = ({ idea }) => {
   const { setDeleting, setIsEdit, setModalOpen } = useContext(
-    DataContext
+    IdeasContext
   ) as ContextType;
 
   // Formatting date to render

@@ -6,24 +6,27 @@ import DeleteModal from "./components/DeleteModal/DeleteModal.tsx";
 import SortingSwitch from "./components/SortingSwitch/SortingSwitch.tsx";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { IdeasContextProvider } from "./context/IdeasContext.tsx";
 
 function App() {
   return (
     <>
-      <Header />
-      <SortingSwitch />
-      <Cards />
-      <NewIdeaModal />
-      <DeleteModal />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick={true}
-        draggable={false}
-        pauseOnHover={false}
-        theme="light"
-      />
+      <IdeasContextProvider>
+        <Header />
+        <SortingSwitch />
+        <Cards />
+        <NewIdeaModal />
+        <DeleteModal />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick={true}
+          draggable={false}
+          pauseOnHover={false}
+          theme="light"
+        />
+      </IdeasContextProvider>
     </>
   );
 }

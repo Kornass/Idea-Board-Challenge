@@ -2,13 +2,13 @@ import Card from "../Card/Card.tsx";
 import InputCard from "../InputCard/InputCard.tsx";
 import "./cards.css";
 import { obtainLatest } from "../../utils/utils.js";
-import { DataContext } from "../../context/DataContext";
+import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import { Idea } from "../../types.ts";
 import { ContextType } from "../../types.ts";
 
 function Cards() {
-  const { ideas, activeSorting } = useContext(DataContext) as ContextType;
+  const { ideas, activeSorting } = useContext(IdeasContext) as ContextType;
 
   const sortIdeas = (ideas: Idea[]) => {
     if (activeSorting === "Date") {

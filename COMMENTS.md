@@ -18,7 +18,7 @@ I'm aware of the lack of use of typescript and testing in my solution. I'm curio
 
 // Dan's review comments:
 
-- Deployment
+- Deployment - https://my-idea-board-challenge.netlify.app/
 - List criteria that you've met
 - obtainLatest function redundant - would be nice to fix with typescript
 - getting from local storage in useEffect instead on state initialization
