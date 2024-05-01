@@ -20,8 +20,8 @@ export type ContextType = {
   setActiveSorting: React.Dispatch<
     React.SetStateAction<"Alphabetically" | "Date">
   >;
-  deleting: string | null;
-  setDeleting: React.Dispatch<React.SetStateAction<string | null>>;
+  deletingId: string | null;
+  setDeletingId: React.Dispatch<React.SetStateAction<string | null>>;
   // functions
   addIdea: (newIdea: NewIdeaState) => void;
   updateIdea: (updated: Idea | NewIdeaState, oldVersion: Idea) => void;

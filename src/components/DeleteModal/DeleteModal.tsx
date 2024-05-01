@@ -7,17 +7,17 @@ import { Idea, ContextType } from "../../types";
 Modal.setAppElement("#root");
 
 function DeleteModal() {
-  const { deleting, setDeleting, deleteIdea, ideas } = useContext(
+  const { deletingId, setDeletingId, deleteIdea, ideas } = useContext(
     IdeasContext
   ) as ContextType;
 
-  const toDelete = ideas.find((idea: Idea) => idea.id === deleting);
+  const toDelete = ideas.find((idea: Idea) => idea.id === deletingId);
 
   return (
     <Modal
-      isOpen={!!deleting}
+      isOpen={!!deletingId}
       onRequestClose={() => {
-        setDeleting(null);
+        setDeletingId(null);
       }}
       contentLabel="Delete idea"
       overlayClassName="myoverlay"
@@ -26,10 +26,13 @@ function DeleteModal() {
       <div className="modal del">
         <p>{`Are you sure you want to delete idea of ${toDelete?.title} ?`}</p>
         {/* Using non-null assertion operator ! cause dedleting is null only initially. When this function is called, deleting type is always 'string' */}
-        <button className="delete-button" onClick={() => deleteIdea(deleting!)}>
+        <button
+          className="delete-button"
+          onClick={() => deleteIdea(deletingId!)}
+        >
           DELETE
         </button>
-        <button className="close" onClick={() => setDeleting(null)}>
+        <button className="close" onClick={() => setDeletingId(null)}>
           X
         </button>
       </div>

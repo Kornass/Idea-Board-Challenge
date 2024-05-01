@@ -23,7 +23,7 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
     "Date"
   );
   // State for deleting modal
-  const [deleting, setDeleting] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const updateIdea = (updated: Idea | NewIdeaState, oldVersion: Idea) => {
     const updatedIdea = { ...oldVersion, ...updated, updatedAt: new Date() };
@@ -54,7 +54,7 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const deleteIdea = (id: string) => {
     setIdeas((prevState) => prevState.filter((idea: Idea) => idea.id !== id));
-    setDeleting(null);
+    setDeletingId(null);
     toast.info("Idea deleted successfully!");
   };
 
@@ -101,8 +101,8 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
         activeSorting,
         setActiveSorting,
         onModalClose,
-        deleting,
-        setDeleting,
+        deletingId,
+        setDeletingId,
       }}
     >
       {children}
