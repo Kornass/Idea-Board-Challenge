@@ -9,11 +9,11 @@ import { ContextType } from "../../types.ts";
 Modal.setAppElement("#root");
 
 function NewIdeaModal() {
-  const { modalOpen, addIdea, isEdit, ideas, onModalClose, updateIdea } =
+  const { modalOpen, addIdea, editId, ideas, onModalClose, updateIdea } =
     useContext(IdeasContext) as ContextType;
 
   // Obtaining and extracting element that is being edited based on isEdit and ideas state (fully dependend on other state values so can be static variable)
-  const beingEdited = isEdit && ideas.find((idea: Idea) => idea.id === isEdit);
+  const beingEdited = editId && ideas.find((idea: Idea) => idea.id === editId);
 
   const [newIdea, setNewIdea] = useState({
     title: "",
@@ -106,7 +106,7 @@ function NewIdeaModal() {
             }
             type="submit"
           >
-            {isEdit ? "Update idea" : "Add idea"}
+            {editId ? "Update idea" : "Add idea"}
           </button>
         </form>
         <button className="close" onClick={() => onModalClose()}>

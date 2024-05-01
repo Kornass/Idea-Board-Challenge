@@ -1,10 +1,10 @@
 import "../Card/card.css";
-import "./inputCard.css";
+import "./addIdeaButton.css";
 import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import { ContextType } from "../../types.ts";
 
-function InputCard() {
+function AddIdeaButton() {
   const { setModalOpen } = useContext(IdeasContext) as ContextType;
 
   return (
@@ -14,4 +14,4 @@ function InputCard() {
   );
 }
 
-export default InputCard;
+export default AddIdeaButton;

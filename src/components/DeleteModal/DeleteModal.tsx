@@ -2,8 +2,7 @@ import Modal from "react-modal";
 import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import "../NewIdeaModal/modal.css";
-import { Idea } from "../../types";
-import { ContextType } from "../../types.ts";
+import { Idea, ContextType } from "../../types";
 
 Modal.setAppElement("#root");
 
@@ -13,6 +12,7 @@ function DeleteModal() {
   ) as ContextType;
 
   const toDelete = ideas.find((idea: Idea) => idea.id === deleting);
+
   return (
     <Modal
       isOpen={!!deleting}

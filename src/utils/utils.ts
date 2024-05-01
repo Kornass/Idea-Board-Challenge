@@ -1,11 +1,7 @@
-type Idea = {
-  createdAt: Date;
-  updatedAt: Date | string; // is string only when idea is not updated (empty string)
-};
+import { Idea } from "../types";
 
 export const obtainLatest = (idea: Idea): Date => {
-  if (!idea.updatedAt) return idea.createdAt;
-  if (idea.updatedAt instanceof Date) {
+  if (idea.updatedAt > idea.createdAt) {
     return idea.updatedAt;
   }
   return idea.createdAt;

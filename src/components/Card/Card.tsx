@@ -8,11 +8,10 @@ import { ContextType } from "../../types.ts";
 
 type Props = {
   idea: Idea;
-  idx: number;
 };
 
 const Card: React.FC<Props> = ({ idea }) => {
-  const { setDeleting, setIsEdit, setModalOpen } = useContext(
+  const { setDeleting, setEditId, setModalOpen } = useContext(
     IdeasContext
   ) as ContextType;
 
@@ -23,7 +22,7 @@ const Card: React.FC<Props> = ({ idea }) => {
     <div
       className="card"
       onClick={() => {
-        setIsEdit(idea.id);
+        setEditId(idea.id);
         setModalOpen(true);
       }}
     >

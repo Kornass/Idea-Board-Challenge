@@ -15,7 +15,7 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   // This state will hold id of idea that is being edited
-  const [isEdit, setIsEdit] = useState<string | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
   // Grab ideas from the localstorage at state initialization
   const [ideas, setIdeas] = useState<Idea[]>([]);
   // Sorting method indicator stated
@@ -26,14 +26,14 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [deleting, setDeleting] = useState<string | null>(null);
 
   const updateIdea = (updated: Idea | NewIdeaState, oldVersion: Idea) => {
-    updated = { ...oldVersion, ...updated, updatedAt: new Date() };
+    const updatedIdea = { ...oldVersion, ...updated, updatedAt: new Date() };
     setIdeas((prevState) => {
       return prevState.map((idea) => {
-        if (idea.id === isEdit) return updated;
+        if (idea.id === editId) return updatedIdea;
         return idea;
       });
     });
-    setIsEdit(null);
+    setEditId(null);
     setModalOpen(false);
     toast.success("Idea updated successfully!");
   };
@@ -43,8 +43,8 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
       ...prevState,
       {
         ...newIdea,
+        updatedAt: new Date(),
         createdAt: new Date(),
-        updatedAt: "",
         id: uuidv4(),
       },
     ]);
@@ -59,7 +59,7 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const onModalClose = () => {
-    setIsEdit(null);
+    setEditId(null);
     setModalOpen((prev) => !prev);
   };
 
@@ -72,17 +72,15 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
       );
       const formatted = ideasFromStorage.map((idea: Idea) => ({
         ...idea,
-        createdAt: new Date(idea.createdAt),
         updatedAt: new Date(idea.updatedAt),
+        createdAt: new Date(idea.createdAt),
       }));
       setIdeas(formatted);
     }
   }, []);
 
   useEffect(() => {
-    if (ideas.length) {
-      localStorage.setItem("ideas", JSON.stringify(ideas));
-    }
+    localStorage.setItem("ideas", JSON.stringify(ideas));
   }, [ideas]);
 
   // useEffect(() => {
@@ -98,8 +96,8 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
         updateIdea,
         ideas,
         deleteIdea,
-        isEdit,
-        setIsEdit,
+        editId,
+        setEditId,
         activeSorting,
         setActiveSorting,
         onModalClose,

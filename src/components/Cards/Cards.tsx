@@ -1,5 +1,5 @@
 import Card from "../Card/Card.tsx";
-import InputCard from "../InputCard/InputCard.tsx";
+import AddIdeaButton from "../InputCard/AddIdeaButton.tsx";
 import "./cards.css";
 import { obtainLatest } from "../../utils/utils.js";
 import { IdeasContext } from "../../context/IdeasContext.tsx";
@@ -28,10 +28,10 @@ function Cards() {
 
   return (
     <section className="card-wrapper">
-      <InputCard />
+      <AddIdeaButton />
       {/* Conditional render of different type of sorting  */}
-      {sortIdeas(ideas).map((idea, idx) => (
-        <Card idea={idea} idx={idx + 1} key={idea.id} />
+      {sortIdeas(ideas).map((idea) => (
+        <Card idea={idea} key={idea.id} />
       ))}
     </section>
   );

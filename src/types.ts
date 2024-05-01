@@ -3,7 +3,7 @@ export type Idea = {
   title: string;
   description: string;
   createdAt: Date;
-  updatedAt: Date | string;
+  updatedAt: Date;
 };
 export type NewIdeaState = {
   title: string;
@@ -14,8 +14,8 @@ export type ContextType = {
   ideas: Idea[];
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isEdit: string | null;
-  setIsEdit: React.Dispatch<React.SetStateAction<string | null>>;
+  editId: string | null;
+  setEditId: React.Dispatch<React.SetStateAction<string | null>>;
   activeSorting: "Alphabetically" | "Date";
   setActiveSorting: React.Dispatch<
     React.SetStateAction<"Alphabetically" | "Date">
