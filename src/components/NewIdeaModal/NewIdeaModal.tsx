@@ -39,14 +39,10 @@ function NewIdeaModal() {
   // Checking if some editing occured. if not - keep button disabled
   const ifEdited = () => {
     if (beingEdited) {
-      if (
+      return (
         beingEdited.title === newIdea.title &&
         beingEdited.description === newIdea.description
-      ) {
-        return true;
-      } else {
-        return false;
-      }
+      );
     }
   };
 
