@@ -1,6 +1,6 @@
 import { Idea } from "../types";
 
-export const obtainLatest = (idea: Idea): Date => {
+export const getDate = (idea: Idea): Date => {
   if (idea.updatedAt > idea.createdAt) {
     return idea.updatedAt;
   }

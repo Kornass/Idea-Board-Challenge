@@ -1,20 +1,21 @@
 import Card from "../Card/Card.tsx";
-import AddIdeaButton from "../InputCard/AddIdeaButton.tsx";
 import "./cards.css";
-import { obtainLatest } from "../../utils/utils.js";
+import { getDate } from "../../utils/utils.js";
 import { IdeasContext } from "../../context/IdeasContext.tsx";
 import { useContext } from "react";
 import { Idea } from "../../types.ts";
 import { ContextType } from "../../types.ts";
 
 function Cards() {
-  const { ideas, activeSorting } = useContext(IdeasContext) as ContextType;
+  const { ideas, activeSorting, setModalOpen } = useContext(
+    IdeasContext
+  ) as ContextType;
 
   const sortIdeas = (ideas: Idea[]) => {
     if (activeSorting === "Date") {
       return ideas.toSorted((a, b) => {
-        const latestA: Date = obtainLatest(a);
-        const latestB: Date = obtainLatest(b);
+        const latestA: Date = getDate(a);
+        const latestB: Date = getDate(b);
         return latestB.getTime() - latestA.getTime();
       });
     } else {
@@ -28,7 +29,9 @@ function Cards() {
 
   return (
     <section className="card-wrapper">
-      <AddIdeaButton />
+      <button className="card first animate" onClick={() => setModalOpen(true)}>
+        <span>+</span>
+      </button>
       {/* Conditional render of different type of sorting  */}
       {sortIdeas(ideas).map((idea) => (
         <Card idea={idea} key={idea.id} />
