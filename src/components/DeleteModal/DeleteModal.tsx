@@ -4,7 +4,7 @@ import { useContext } from "react";
 import "../NewIdeaModal/modal.css";
 import { Idea, ContextType } from "../../types";
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
 
 function DeleteModal() {
   const { deletingId, setDeletingId, deleteIdea, ideas } = useContext(

@@ -77,10 +77,6 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("ideas", JSON.stringify(ideas));
   }, [ideas]);
 
-  // useEffect(() => {
-  //   console.log(ideas);
-  // }, [ideas]);
-
   return (
     <IdeasContext.Provider
       value={{

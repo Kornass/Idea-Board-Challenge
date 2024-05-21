@@ -6,7 +6,7 @@ import "./modal.css";
 import { Idea } from "../../types";
 import { ContextType } from "../../types.ts";
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
 
 function NewIdeaModal() {
   const { modalOpen, addIdea, editId, ideas, onModalClose, updateIdea } =
@@ -22,7 +22,7 @@ function NewIdeaModal() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setNewIdea((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setNewIdea((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   useEffect(() => {
@@ -47,9 +47,11 @@ function NewIdeaModal() {
       contentLabel="New idea"
       overlayClassName="myoverlay"
       className="myModal"
+      ariaHideApp={false}
     >
       <div className="modal">
         <form
+          aria-label="form"
           onSubmit={(e) => {
             e.preventDefault();
             setNewIdea({
@@ -60,11 +62,11 @@ function NewIdeaModal() {
           }}
         >
           <div className="field">
-            <label>Title:</label>
+            <label htmlFor="title">Title</label>
             <input
               required
               type="text"
-              name="title"
+              id="title"
               onChange={handleChange}
               maxLength={50}
               value={newIdea.title}
@@ -72,11 +74,11 @@ function NewIdeaModal() {
             <span className="count">{`${newIdea.title.length} / 50`}</span>
           </div>
           <div className="field">
-            <label>Description:</label>
+            <label htmlFor="description">Description</label>
             <textarea
               required
               rows={3}
-              name="description"
+              id="description"
               onChange={handleChange}
               maxLength={140}
               value={newIdea.description}
@@ -95,7 +97,16 @@ function NewIdeaModal() {
             {editId ? "Update idea" : "Add idea"}
           </button>
         </form>
-        <button className="close" onClick={() => onModalClose()}>
+        <button
+          className="close"
+          onClick={() => {
+            setNewIdea({
+              title: "",
+              description: "",
+            });
+            onModalClose();
+          }}
+        >
           X
         </button>
       </div>
