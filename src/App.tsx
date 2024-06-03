@@ -10,24 +10,22 @@ import { IdeasContextProvider } from "./context/IdeasContext.tsx";
 
 function App() {
   return (
-    <>
-      <IdeasContextProvider>
-        <Header />
-        <SortingSwitch />
-        <Cards />
-        <NewIdeaModal />
-        <DeleteModal />
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          closeOnClick={true}
-          draggable={false}
-          pauseOnHover={false}
-          theme="light"
-        />
-      </IdeasContextProvider>
-    </>
+    <IdeasContextProvider>
+      <Header />
+      <SortingSwitch />
+      <Cards />
+      <NewIdeaModal />
+      <DeleteModal />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
+    </IdeasContextProvider>
   );
 }
 

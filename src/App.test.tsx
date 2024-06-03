@@ -1,4 +1,4 @@
-import App from "../../App";
+import App from "./App";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 
 describe("Initial screen", () => {
