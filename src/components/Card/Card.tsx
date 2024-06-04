@@ -19,8 +19,9 @@ const Card: React.FC<Props> = ({ idea }) => {
   const date: string = getDate(idea).toString().slice(4, 15);
   // const date = "Date";
   return (
-    <div
+    <button
       className="card"
+      aria-label="edit"
       onClick={() => {
         setEditId(idea.id);
         setModalOpen(true);
@@ -40,7 +41,7 @@ const Card: React.FC<Props> = ({ idea }) => {
         Delete idea
       </button>
       <span className="date">{date}</span>
-    </div>
+    </button>
   );
 };
 
