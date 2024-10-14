@@ -1,8 +1,7 @@
 import App from "./App";
 import Card from "./components/Card/Card";
-import NewIdeaModal from "./components/NewIdeaModal/NewIdeaModal";
 import { Idea } from "./types";
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { render } from "./test-utils";
 import userEvent from "@testing-library/user-event";
 
