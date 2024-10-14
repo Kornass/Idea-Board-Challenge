@@ -59,7 +59,6 @@ export const IdeasContextProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
-    // As I store data in localstorage in JSON (which is not supporting Date type), dates are coming in string format when data got retrieved from localstorage.
     const ideas = localStorage.getItem("ideas");
     if (ideas) {
       // Every time you reach for ideas to localstorage, change their dates to date type

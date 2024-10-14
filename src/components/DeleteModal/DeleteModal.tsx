@@ -25,7 +25,6 @@ function DeleteModal() {
     >
       <div className="modal del">
         <p>{`Are you sure you want to delete idea of ${toDelete?.title} ?`}</p>
-        {/* Using non-null assertion operator ! cause dedleting is null only initially. When this function is called, deleting type is always 'string' */}
         <button
           className="delete-button"
           onClick={() => deleteIdea(deletingId!)}

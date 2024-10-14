@@ -17,7 +17,7 @@ const Card: React.FC<Props> = ({ idea }) => {
 
   // Formatting date to render
   const date: string = getDate(idea).toString().slice(4, 15);
-  // const date = "Date";
+
   return (
     <button
       className="card"
@@ -34,7 +34,6 @@ const Card: React.FC<Props> = ({ idea }) => {
         onClick={(e) => {
           // Stopping event propagation to card node which would trigger opening modal window
           e.stopPropagation();
-          // setting deleting to the idea I want to delete - it'll make state truthy that will be an indicator for deleting modal to open
           setDeletingId(idea.id);
         }}
       >

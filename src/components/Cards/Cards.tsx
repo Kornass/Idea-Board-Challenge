@@ -29,11 +29,15 @@ function Cards() {
 
   return (
     <section className="card-wrapper">
-      <button className="card first animate" onClick={() => setModalOpen(true)}>
+      <button
+        className="card first animate"
+        aria-label="new"
+        onClick={() => setModalOpen(true)}
+      >
         <span>+</span>
       </button>
       {/* Conditional render of different type of sorting  */}
-      {sortIdeas(ideas).map((idea) => (
+      {sortIdeas(ideas).map((idea: Idea) => (
         <Card idea={idea} key={idea.id} />
       ))}
     </section>
